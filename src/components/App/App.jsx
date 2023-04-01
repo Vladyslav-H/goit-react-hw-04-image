@@ -24,10 +24,7 @@ export const App = () => {
   };
 
   useEffect(() => {
-    if (searchName || page !== 1) setNewImages();
-  }, [searchName, page]);
-
-  const setNewImages = async () => {
+     const setNewImages = async () => {
     setIsLoading(true);
     try {
       const data = await axiosImg(searchName, page);
@@ -42,7 +39,11 @@ export const App = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+    };
+    if (searchName || page !== 1) setNewImages()
+  }, [searchName, page]);
+
+ 
 
   return (
     <>

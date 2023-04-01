@@ -9,17 +9,16 @@ const Modal = ({ closeModal, largeImg }) => {
     }
   };
   useEffect(() => {
+    const closeModalByEscape = e => {
+      if (e.code === 'Escape') {
+        closeModal();
+      }
+    };
     window.addEventListener('keydown', closeModalByEscape);
     return () => {
       window.removeEventListener('keydown', closeModalByEscape);
     };
-  }, []);
-
-  const closeModalByEscape = e => {
-    if (e.code === 'Escape') {
-      closeModal();
-    }
-  };
+  }, [closeModal]);
 
   return (
     <OverlayStyled onClick={handleCloseModal}>
